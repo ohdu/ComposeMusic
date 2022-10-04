@@ -10,7 +10,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import com.ohdu.music.ui.theme.ComposeMusicTheme
 
@@ -34,9 +34,12 @@ class MainActivity : ComponentActivity() {
 @Preview(name = "首页底部导航栏")
 @Composable
 fun MainBottomNavigation() {
+    var selectedIndex by remember {
+        mutableStateOf(true)
+    }
     NavigationBar {
-        NavigationBarItem(selected = false, onClick = {
-
+        NavigationBarItem(selected = selectedIndex, onClick = {
+            selectedIndex = true
         }, icon = {
             Icon(Icons.Default.Home, contentDescription = "")
         }, label = {
@@ -44,7 +47,7 @@ fun MainBottomNavigation() {
         }, alwaysShowLabel = false
         )
         NavigationBarItem(selected = false, onClick = {
-
+            selectedIndex = false
         }, icon = {
             Icon(Icons.Default.Add, contentDescription = "")
         }, label = {
@@ -52,7 +55,7 @@ fun MainBottomNavigation() {
         }, alwaysShowLabel = false
         )
         NavigationBarItem(selected = false, onClick = {
-
+            selectedIndex = false
         }, icon = {
             Icon(Icons.Default.Menu, contentDescription = "")
         }, label = {
